@@ -356,9 +356,15 @@ export default function RosterPage() {
 
                         // admin account hidden on roster display
                         // todo: using .env to hide the admin email for better security
-                        const filteredMembers = response.data.filter(
-                            (member) => member.Email?.toLowerCase() !== "skibama18@gmail.com"
-                        );
+                        // const filteredMembers = response.data.filter(
+                        //     (member) => member.Email?.toLowerCase() !== "skibama18@gmail.com"
+                        // );
+
+                        const filteredMembers = response.data.filter((member) => {
+                            console.log("Member:", member);
+                            console.log("isAdminVerified:", member.isAdminVerified);
+                            return member.Email?.toLowerCase() !== "skibama18@gmail.com" && member.isAdminVerified === 1;
+                        });
 
                         setTeamMembers(filteredMembers);
                     } catch (error) {
