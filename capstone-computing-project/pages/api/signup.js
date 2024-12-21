@@ -63,7 +63,7 @@ const signup = async (req, res) => {
 
         const mailOptions = {
             from: process.env.GMAIL_EMAIL,
-            to: process.env.GMAIL_EMAIL,
+            to: email,
             subject: 'UA Waterski Team | Verify Your Email for Account Creation',
             html: `
                 <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
@@ -95,7 +95,7 @@ const signup = async (req, res) => {
 
         const mailOptionsForConfirmingUserRegistration = {
             from: process.env.GMAIL_EMAIL,
-            to: email,
+            to: process.env.GMAIL_EMAIL,
             subject: 'UA Waterski Team | Confirm User Registration',
             html: `
                 <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
