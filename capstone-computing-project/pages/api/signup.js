@@ -19,15 +19,15 @@ const signup = async (req, res) => {
     // this one isn't complex, should refine this
     // prevents scripting accounts with + symbol trick
     // ENABLE THESE AGAIN
-    // for (let i = 0; i < email.length; i++) {
-    //     if (email[i] === '+' && !isNaN(email[i + 1])) {
-    //         return res.status(400).json({ message: 'Invalid email' });
-    //     }
-    // }
+    for (let i = 0; i < email.length; i++) {
+        if (email[i] === '+' && !isNaN(email[i + 1])) {
+            return res.status(400).json({ message: 'Invalid email' });
+        }
+    }
 
-    // if (!email.endsWith('.ua.edu')) {
-    //     return res.status(400).json({ message: 'Only .ua.edu emails are allowed to sign up.' });
-    // }
+    if (!email.endsWith('.ua.edu')) {
+        return res.status(400).json({ message: 'Only .ua.edu emails are allowed to sign up.' });
+    }
 
     try {
         const [existingUsers] = await db.query('SELECT * FROM User WHERE Email = ?', [email]);
