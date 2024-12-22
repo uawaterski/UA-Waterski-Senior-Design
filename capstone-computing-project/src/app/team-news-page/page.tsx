@@ -75,8 +75,8 @@ export default function TeamNewsPage(){
                                                   alt={`Image ${index + 1}`}
                                                   className="h-auto w-auto object-contain"
                                                   style={{
-                                                    width: "75%",
-                                                    maxWidth: "75%",
+                                                    width: "50%",
+                                                    maxWidth: "50%",
                                                     }}
                                               />
                                           </div>
