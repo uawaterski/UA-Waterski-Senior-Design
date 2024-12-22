@@ -61,6 +61,7 @@ const signup = async (req, res) => {
             },
         });
 
+        console.log('Sending verification email to', email);
         const mailOptions = {
             from: process.env.GMAIL_EMAIL,
             to: email,
