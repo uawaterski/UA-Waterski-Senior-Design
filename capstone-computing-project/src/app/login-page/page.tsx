@@ -218,6 +218,28 @@ const LoginPage = () => {
             document.getElementById('errorText')!.innerText = "Email must be a valid University of Alabama address (i.e., ending in ua.edu).";
             return; 
         }
+
+
+        
+
+        // testing
+        if (
+            window.location.host.includes("brian") ||
+            window.location.host.includes("lilly") ||
+            window.location.host.includes("brooke") ||
+            window.location.host.includes("anastasia")
+        ) {
+            const host = window.location.host;
+            const baseDomain = "uawaterski.com";
+
+            if (host !== `www.${baseDomain}` && host.endsWith(baseDomain)) {
+                APP_URL = `https://${host}/`;
+            }
+
+            // console.log("Current APP_URL:", APP_URL);
+        } else {
+            console.log("oops you coded wrong, what a dummy");
+        }
     
         const endpoint = isLogin ? `${APP_URL}api/login` : `${APP_URL}api/signup`;
     
