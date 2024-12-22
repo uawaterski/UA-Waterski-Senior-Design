@@ -69,11 +69,15 @@ export default function TeamNewsPage(){
                                           <span className="text-gray-500">{expandedIndex === index ? '-' : '+'}</span>
                                       </button>
                                       {expandedIndex === index && (
-                                          <div className="flex justify-center w-full mt-2">
+                                          <div className="flex justify-center w-full">
                                               <img
                                                   src={imageUrl}
                                                   alt={`Image ${index + 1}`}
                                                   className="h-auto w-auto object-contain"
+                                                  style={{
+                                                    width: "75%",
+                                                    maxWidth: "75%",
+                                                    }}
                                               />
                                           </div>
                                       )}
