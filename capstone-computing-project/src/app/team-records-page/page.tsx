@@ -4,11 +4,17 @@ import { useEffect, useState } from "react";
 import Link from 'next/link';
 import { fetchSheetData } from "../googlesheetservices";
 
+interface TeamRecord {
+    event:string;
+    holder: string;
+    record: string;
+}
+
 export default function TeamNewsPage(){
     const [error, setError] = useState<string | null>(null);
     const [headerPhoto, setHeaderPhoto] = useState<string | null>(null);
-    const [mensRecords, setMensRecords] = useState<any[]>([]);
-    const [womensRecords, setWomensRecords] = useState<any[]>([]);
+    const [mensRecords, setMensRecords] = useState<TeamRecord[]>([]);
+    const [womensRecords, setWomensRecords] = useState<TeamRecord[]>([]);
     const [expandedIndex, setExpandedIndex] = useState<string | null>(null);
 
     useEffect(() => {
@@ -54,7 +60,7 @@ export default function TeamNewsPage(){
                 <div className="text-center mb-12">
                     <h1 className="text-5xl font-extrabold text-[#9E1B32] mb-6">Team Records</h1>
                     <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-                        Celebrating the achievements of our men's and women's teams.
+                        Celebrating the achievements of our men&#39;s and women&#39;s teams.
                     </p>
                 </div>
 
@@ -62,7 +68,7 @@ export default function TeamNewsPage(){
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Men's Records */}
                     <div>
-                        <h3 className="text-2xl font-bold text-[#9E1B32] mb-4">Men's Team Records</h3>
+                        <h3 className="text-2xl font-bold text-[#9E1B32] mb-4">Men&#39;s Team Records</h3>
                         <table className="table-auto w-full text-left border-collapse border border-gray-300">
                             <thead>
                                 <tr>
@@ -83,7 +89,7 @@ export default function TeamNewsPage(){
                                 ) : (
                                     <tr>
                                         <td colSpan={3} className="text-center py-4">
-                                            No men's records available.
+                                            No men&#39;s records available.
                                         </td>
                                     </tr>
                                 )}
@@ -93,7 +99,7 @@ export default function TeamNewsPage(){
 
                     {/* Women's Records */}
                     <div>
-                        <h3 className="text-2xl font-bold text-[#9E1B32] mb-4">Women's Team Records</h3>
+                        <h3 className="text-2xl font-bold text-[#9E1B32] mb-4">Women&#39;s Team Records</h3>
                         <table className="table-auto w-full text-left border-collapse border border-gray-300">
                             <thead>
                                 <tr>
@@ -114,7 +120,7 @@ export default function TeamNewsPage(){
                                 ) : (
                                     <tr>
                                         <td colSpan={3} className="text-center py-4">
-                                            No women's records available.
+                                            No women&#39;s records available.
                                         </td>
                                     </tr>
                                 )}
