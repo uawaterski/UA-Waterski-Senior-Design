@@ -9,7 +9,7 @@ export default function TeamNewsPage(){
     const [headerPhoto, setHeaderPhoto] = useState<string | null>(null);
     const [newsLetterHeader, setNewsLetterHeader] = useState<string[]>([]);
     const [newsLetterImg, setNewsLetterImg] = useState<string[]>([]);
-    const [expandedIndex, setExpandedIndex] = useState<number>(0);
+    const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
     useEffect(() => {
         const getData = async () => {
