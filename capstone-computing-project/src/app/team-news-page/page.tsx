@@ -21,7 +21,7 @@ export default function TeamNewsPage(){
                     setHeaderPhoto(headerPhoto);
     
                     // Extract Newsletter Headers and Images starting from row 4
-                    const slicedData = data.slice(3); // Start from row 4
+                    const slicedData = data.slice(4); // Start from row 4
                     const newsLetterHeader = slicedData.map((row) => row[0]).filter((header) => header); // Column A
                     const newsLetterImg = slicedData.map((row) => row[1]).filter((url) => url?.startsWith("http")); // Column B
     
