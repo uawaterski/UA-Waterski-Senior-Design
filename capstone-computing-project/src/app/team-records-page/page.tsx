@@ -2,15 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Link from 'next/link';
+import Image from 'next/image';
 import { fetchSheetData } from "../googlesheetservices";
+import svgOne from "../../components/img/team-records-page-1.svg";
 
 interface TeamRecord {
-    event:string;
+    event: string;
     holder: string;
     record: string;
 }
 
-export default function TeamNewsPage(){
+export default function TeamNewsPage() {
     const [error, setError] = useState<string | null>(null);
     const [headerPhoto, setHeaderPhoto] = useState<string | null>(null);
     const [mensRecords, setMensRecords] = useState<TeamRecord[]>([]);
@@ -18,10 +20,10 @@ export default function TeamNewsPage(){
     const [expandedIndex, setExpandedIndex] = useState<string | null>(null);
 
     useEffect(() => {
-        const getData = async() => {
+        const getData = async () => {
             try {
                 const data = await fetchSheetData("TeamRecordsPage");
-                if(data) {
+                if (data) {
                     //Extract Men's Team Records (Rows 8-10)
                     const mensRecords = data.slice(4, 7).map((row) => ({
                         event: row[0],
@@ -44,7 +46,7 @@ export default function TeamNewsPage(){
                     setMensRecords([]);
                     setWomensRecords([]);
                 }
-            
+
             } catch (err) {
                 console.error("Error fetching sheet data:", err);
                 setError("Failed to fetch data");
@@ -55,23 +57,34 @@ export default function TeamNewsPage(){
     }, []);
 
     return (
-        <div className="flex items-center justify-center min-h-screen">
+        <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <section className="container mx-auto px-4 py-20">
                 <div className="text-center mb-12">
-                    <h1 className="text-5xl font-extrabold text-[#9E1B32] mb-6">Team Records</h1>
+                    <h1 className="text-5xl font-extrabold text-[#9E1B32] mb-6">Our Record Holders</h1>
                     <p className="text-lg text-gray-700 max-w-3xl mx-auto">
                         Celebrating the achievements of our men&#39;s and women&#39;s teams.
                     </p>
                 </div>
 
+                <div className="flex justify-center">
+                    <Image
+                        src={svgOne}
+                        alt="Team Newsletter"
+                        width={400}
+                        height={200}
+                        objectFit="cover"
+                        className="rounded-lg shadow-lg mb-10"
+                    />
+                </div>
+
                 {/* Team Records Section */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                     {/* Men's Records */}
                     <div>
                         <h3 className="text-2xl font-bold text-[#9E1B32] mb-4">Men&#39;s Team Records</h3>
-                        <table className="table-auto w-full text-left border-collapse border border-gray-300">
+                        <table className="table-auto w-full text-left border-collapse border border-gray-300 bg-white shadow-md rounded-lg">
                             <thead>
-                                <tr>
+                                <tr className="bg-gray-200">
                                     <th className="border border-gray-300 text-black px-4 py-2">Event</th>
                                     <th className="border border-gray-300 text-black px-4 py-2">Record Holder</th>
                                     <th className="border border-gray-300 text-black px-4 py-2">Record</th>
@@ -80,7 +93,7 @@ export default function TeamNewsPage(){
                             <tbody>
                                 {mensRecords.length > 0 ? (
                                     mensRecords.map((record, index) => (
-                                        <tr key={index}>
+                                        <tr key={index} className="hover:bg-gray-100">
                                             <td className="border border-gray-300 text-gray-900 px-4 py-2">{record.event}</td>
                                             <td className="border border-gray-300 text-gray-500 px-4 py-2">{record.holder}</td>
                                             <td className="border border-gray-300 text-gray-500 px-4 py-2">{record.record}</td>
@@ -100,9 +113,9 @@ export default function TeamNewsPage(){
                     {/* Women's Records */}
                     <div>
                         <h3 className="text-2xl font-bold text-[#9E1B32] mb-4">Women&#39;s Team Records</h3>
-                        <table className="table-auto w-full text-left border-collapse border border-gray-300">
+                        <table className="table-auto w-full text-left border-collapse border border-gray-300 bg-white shadow-md rounded-lg">
                             <thead>
-                                <tr>
+                                <tr className="bg-gray-200">
                                     <th className="border border-gray-300 text-black px-4 py-2">Event</th>
                                     <th className="border border-gray-300 text-black px-4 py-2">Record Holder</th>
                                     <th className="border border-gray-300 text-black px-4 py-2">Record</th>
@@ -111,7 +124,7 @@ export default function TeamNewsPage(){
                             <tbody>
                                 {womensRecords.length > 0 ? (
                                     womensRecords.map((record, index) => (
-                                        <tr key={index}>
+                                        <tr key={index} className="hover:bg-gray-100">
                                             <td className="border border-gray-300 text-gray-900 px-4 py-2">{record.event}</td>
                                             <td className="border border-gray-300 text-gray-500 px-4 py-2">{record.holder}</td>
                                             <td className="border border-gray-300 text-gray-500 px-4 py-2">{record.record}</td>

@@ -237,11 +237,12 @@ export default function Navbar() {
                     <Link href="/" className="text-white text-base hover:text-black hover:underline transition duration-300">
                         Home
                     </Link>
+                    {/* changing Team News and Team Records to be just News and Achievements for Navbar space */}
                     <Link href="/team-news-page" className="text-white text-base hover:text-black hover:underline transition duration-300">
-                        Team News
+                        News
                     </Link>
                     <Link href="/team-records-page" className="text-white text-base hover:text-black hover:underline transition duration-300">
-                        Team Records
+                        Achievements
                     </Link>
                     {isLoggedIn && (
                         <Link href="/set-list-page" className="text-white text-base hover:text-black hover:underline transition duration-300">
