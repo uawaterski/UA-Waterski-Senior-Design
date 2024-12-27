@@ -60,7 +60,7 @@ export default function TeamNewsPage() {
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <section className="container mx-auto px-4 py-20">
                 <div className="text-center mb-12">
-                    <h1 className="text-5xl font-extrabold text-[#9E1B32] mb-6">Our Record Holders</h1>
+                    <h1 className="text-5xl font-extrabold text-[#9E1B32] mb-6">Our Team Records</h1>
                     <p className="text-lg text-gray-700 max-w-3xl mx-auto">
                         Celebrating the achievements of our men&#39;s and women&#39;s teams.
                     </p>
