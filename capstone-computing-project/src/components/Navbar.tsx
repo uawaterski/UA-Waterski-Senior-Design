@@ -237,7 +237,6 @@ export default function Navbar() {
                     <Link href="/" className="text-white text-base hover:text-black hover:underline transition duration-300">
                         Home
                     </Link>
-                    {/* changing Team News and Team Records to be just News and Achievements for Navbar space */}
                     <Link href="/team-news-page" className="text-white text-base hover:text-black hover:underline transition duration-300">
                         News
                     </Link>
@@ -426,6 +425,12 @@ export default function Navbar() {
             <div className={`md:hidden ${isOpen ? 'block' : 'hidden'} mt-4 space-y-4`}>
                 <Link href="/" className="block text-white text-lg hover:text-black transition duration-300" onClick={closeMenu}>
                     Home
+                </Link>
+                <Link href="/team-news-page" className="text-white text-base hover:text-black hover:underline transition duration-300">
+                    News
+                </Link>
+                <Link href="/team-records-page" className="text-white text-base hover:text-black hover:underline transition duration-300">
+                    Achievements
                 </Link>
                 {isLoggedIn && (
                     <Link href="/set-list-page" className="block text-white text-lg hover:text-black transition duration-300" onClick={closeMenu}>
