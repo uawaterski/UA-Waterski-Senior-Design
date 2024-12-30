@@ -45,7 +45,7 @@ export default function TeamNewsPage() {
     }, []);
 
     return (
-        <div className="flex items-center justify-center min-h-screen">
+        <div>
             <section className="container mx-auto px-4 py-20">
                 <div className="flex justify-between items-center mb-12">
                     <div className="text-left">
@@ -54,14 +54,14 @@ export default function TeamNewsPage() {
                             Stay up to date on the latest news and updates from our team.
                         </p>
                     </div>
-                    <div className="flex justify-center">
+                    <div className="flex justify-center items-center w-1/2">
                         {headerPhoto && (
                             <img
                                 src={headerPhoto}
                                 alt="Header Photo"
                                 width={400}
                                 height={200}
-                                className=" rounded-lg shadow-lg mb-10"
+                                className="rounded-lg shadow-lg mb-10"
                             />
                         )}
                     </div>

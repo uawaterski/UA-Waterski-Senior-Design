@@ -171,7 +171,7 @@ export default function TeamNewsPage() {
 
                 <div className="flex flex-col items-center justify-center">
                     {/* Team Historical Records Section */}
-                    <div className="w-full md:w-3/4">
+                    <div className="w-full md:w-1/2">
                         {/* Team Placement at Nationals */}
                         <div>
                             <h3 className="text-2xl font-bold text-[#9E1B32] mb-4 text-center">Team Placement at Nationals</h3>
