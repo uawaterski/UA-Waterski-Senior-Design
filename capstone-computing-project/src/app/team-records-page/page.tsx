@@ -12,11 +12,17 @@ interface TeamRecord {
     record: string;
 }
 
+interface TeamHistoryRecord {
+    year: string;
+    placement: string;
+}
+
 export default function TeamNewsPage() {
     const [error, setError] = useState<string | null>(null);
     const [headerPhoto, setHeaderPhoto] = useState<string | null>(null);
     const [mensRecords, setMensRecords] = useState<TeamRecord[]>([]);
     const [womensRecords, setWomensRecords] = useState<TeamRecord[]>([]);
+    const [teamHistory, setTeamHistory] = useState<TeamHistoryRecord[]>([]);
     const [expandedIndex, setExpandedIndex] = useState<string | null>(null);
 
     useEffect(() => {
@@ -24,6 +30,16 @@ export default function TeamNewsPage() {
             try {
                 const data = await fetchSheetData("TeamRecordsPage");
                 if (data) {
+
+                    // Extract Header Photo
+                    const headerPhoto = data[1]?.[0];
+                    if (headerPhoto?.startsWith("http")) {
+                        setHeaderPhoto(headerPhoto);
+                    } else {
+                        console.warn("Header Photo URL is invalid:", headerPhoto);
+                        setHeaderPhoto(null); // Set to null if the data is not valid
+                    }
+                    
                     //Extract Men's Team Records (Rows 8-10)
                     const mensRecords = data.slice(4, 7).map((row) => ({
                         event: row[0],
@@ -40,11 +56,22 @@ export default function TeamNewsPage() {
                     }));
                     setWomensRecords(womensRecords);
 
+                    //Extract Men's Team Records (Rows 8-10)
+                    const teamHistory = data.slice(14).map((row) => ({
+                        year: row[0],
+                        placement: row[1],
+                    }));
+                    setTeamHistory(teamHistory);
+
                     console.log("Men's Records:", mensRecords);
                     console.log("Women's Records:", womensRecords);
+                    console.log("Team's History:", teamHistory);
+                    console.log("Fetched Data:", data);
+
                 } else {
                     setMensRecords([]);
                     setWomensRecords([]);
+                    setTeamHistory([]);
                 }
 
             } catch (err) {
@@ -67,14 +94,13 @@ export default function TeamNewsPage() {
                 </div>
 
                 <div className="flex justify-center">
-                    <Image
-                        src={svgOne}
-                        alt="Team Newsletter"
-                        width={400}
-                        height={200}
-                        objectFit="cover"
-                        className="rounded-lg shadow-lg mb-10"
-                    />
+                    {headerPhoto && (
+                        <img
+                            src={headerPhoto}
+                            alt="Header Photo"
+                            className="w-1/2 h-1/2 rounded-lg shadow-lg mb-10"
+                        />
+                    )}
                 </div>
 
                 {/* Team Records Section */}
@@ -141,6 +167,42 @@ export default function TeamNewsPage() {
                         </table>
                     </div>
                 </div>
+                <div className="border-t border-[#9E1B32] my-12"></div>
+
+                <div className="flex flex-col items-center justify-center">
+                    {/* Team Historical Records Section */}
+                    <div className="w-full md:w-3/4">
+                        {/* Team Placement at Nationals */}
+                        <div>
+                            <h3 className="text-2xl font-bold text-[#9E1B32] mb-4 text-center">Team Placement at Nationals</h3>
+                            <table className="table-auto w-full text-left border-collapse border border-gray-300 bg-white shadow-md rounded-lg">
+                                <thead>
+                                    <tr className="bg-gray-200">
+                                        <th className="border border-gray-300 text-black px-4 py-2">Year</th>
+                                        <th className="border border-gray-300 text-black px-4 py-2">Placement</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {teamHistory.length > 0 ? (
+                                        teamHistory.map((record, index) => (
+                                            <tr key={index} className="hover:bg-gray-100">
+                                                <td className="border border-gray-300 text-gray-900 px-4 py-2">{record.year}</td>
+                                                <td className="border border-gray-300 text-gray-500 px-4 py-2">{record.placement}</td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan={3} className="text-center py-4">
+                                                No team placement records available.
+                                            </td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
             </section>
         </div>
     );

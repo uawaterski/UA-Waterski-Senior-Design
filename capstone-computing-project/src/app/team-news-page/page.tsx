@@ -55,14 +55,15 @@ export default function TeamNewsPage() {
                         </p>
                     </div>
                     <div className="flex justify-center">
-                        <Image
-                            src={svgOne}
-                            alt="Team Newsletter"
-                            width={400}
-                            height={200}
-                            objectFit="cover"
-                            className="rounded-lg shadow-md"
-                        />
+                        {headerPhoto && (
+                            <img
+                                src={headerPhoto}
+                                alt="Header Photo"
+                                width={400}
+                                height={200}
+                                className=" rounded-lg shadow-lg mb-10"
+                            />
+                        )}
                     </div>
                 </div>
                 
